@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Maps port 3000 on the host to port 3000 on the container
+    env_file:
+      - .env  # Specifies the env file to load environment variables from
+    volumes:
+      - .:/usr/src/app  # Optional: mount the current directory into the container (for development only)
+    restart: unless-stopped
+
+# Optional: Uncomment if you want to add a MongoDB service
+#  mongo:
+#    image: mongo:latest
+#    volumes:
+#      - mongo_data:/data/db
+#    restart: unless-stopped
+
+#volumes:
+#  mongo_data:
